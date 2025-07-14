@@ -2,44 +2,75 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from './../screens/LoginScreen';
-import { Ionicons } from 'react-native-vector-icons';
+import HomeScreen from '../screens/HomeScreen';
+
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import ExploreScreen from '../screens/ExploreScreen';
+import AddScreen from '../screens/AddScreen';
+import ReelScreen from '../screens/ReelScreen';
+import ProfileScreen from '../screens/ProfileScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
 function Tabs() {
-
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
+        headerShown: false,
+        tabBarShowLabel: false, 
+        tabBarStyle: {
+          backgroundColor: 'black', 
+          borderTopWidth: 0,
+        },
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
 
-          if (route.name === 'Login') {
-            iconName = focused ? 'log-in' : 'log-in-outline';
+          switch (route.name) {
+            case 'Home':
+              iconName = focused ? 'home' : 'home-outline';
+              break;
+            case 'Search':
+              iconName = focused ? 'search' : 'search-outline';
+              break;
+            case 'Add':
+              iconName = focused ? 'add' : 'add-outline';
+              break;
+            case 'Reels':
+              iconName = focused ? 'play-circle' : 'play-circle-outline';
+              break;
+            case 'Profile':
+              iconName = focused ? 'person' : 'person-outline';
+              break;
+            default:
+              iconName = 'ellipse';
           }
 
-          return <Ionicons name={iconName} size={size} color={color} />;
+          return <Ionicons name={iconName} size={24} color={color} />;
         },
-        tabBarActiveTintColor: 'tomato',
+        tabBarActiveTintColor: 'white',
         tabBarInactiveTintColor: 'gray',
       })}
     >
-      <Tab.Screen name="Login" component={LoginScreen} />
+      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Search" component={ExploreScreen} />
+      <Tab.Screen name="Add" component={AddScreen} />
+      <Tab.Screen name="Reels" component={ReelScreen} />
+      <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>
   );
 }
 
 export default function MainNavigator() {
-  const login = false;
+  const login = true;
+
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       {login ? (
         <Stack.Screen name="Tabs" component={Tabs} />
       ) : (
-        <Stack.Screen name="Login" component={LoginScreen}  />
+        <Stack.Screen name="Login" component={LoginScreen} />
       )}
-      {/* <Stack.Screen name="Post" component={PostScreen} /> */}
     </Stack.Navigator>
   );
 }
