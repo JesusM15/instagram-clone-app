@@ -8,7 +8,7 @@ import FontAwesome from '@expo/vector-icons/FontAwesome';
 
 function Post({ post }){
 
-    return <View style={styles.container}>
+    return ( <View style={styles.container}>
         <View style={{
             flexDirection: 'row',
             padding: 4,
@@ -48,7 +48,7 @@ function Post({ post }){
                     flex: 1
                 }}
             />
-        </TouchableOpacity>|
+        </TouchableOpacity>
         <View style={{
             padding: 8
         }}>
@@ -104,7 +104,7 @@ function Post({ post }){
             </View>
         </View>
 
-    </View>
+    </View>)
 };
 
 const styles = StyleSheet.create({

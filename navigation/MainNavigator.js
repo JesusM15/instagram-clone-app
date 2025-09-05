@@ -1,4 +1,5 @@
 import React from 'react';
+import { Image } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from './../screens/LoginScreen';
@@ -9,6 +10,8 @@ import ExploreScreen from '../screens/ExploreScreen';
 import AddScreen from '../screens/AddScreen';
 import ReelScreen from '../screens/ReelScreen';
 import ProfileScreen from '../screens/ProfileScreen';
+
+import pp from './../assets/pp.jpg';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -21,7 +24,9 @@ function Tabs() {
         tabBarShowLabel: false, 
         tabBarStyle: {
           backgroundColor: 'black', 
-          borderTopWidth: 0,
+          borderTopWidth: 1,
+          borderColor: "#333",
+          paddingTop: 4,
         },
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
@@ -45,7 +50,19 @@ function Tabs() {
             default:
               iconName = 'ellipse';
           }
-
+          if(route.name === "Profile"){ 
+            return <>
+              <Image 
+                style={{
+                  width: 24,
+                  objectFit: 'contain',
+                  height: 24,
+                  borderRadius: 99999,
+                }}
+                source={pp} 
+              />
+            </>
+          }
           return <Ionicons name={iconName} size={24} color={color} />;
         },
         tabBarActiveTintColor: 'white',

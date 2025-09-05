@@ -57,8 +57,6 @@ function HomeScreen(){
                         }}
                     />
                 </View>
-
-
                 <View style={{
                     padding: 0,
                     flexDirection: 'row',
@@ -74,15 +72,13 @@ function HomeScreen(){
                     </TouchableOpacity>
                 </View>
             </View>
-
             <View style={{
                 flexDirection: 'row'
             }}>
                 <View style={{ paddingLeft: 8, paddingBottom: 10 }}>
                 <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                     <UserCircle user={user} size={80} />
-
-                    {storiesMapped.map((item, index) => (
+                    {storiesMapped?.map((item, index) => (
                     <UserCircle
                         key={`${index}-${item.id}`}
                         linearGradient
@@ -92,9 +88,7 @@ function HomeScreen(){
                     ))}
                 </ScrollView>
                 </View>
-                
             </View>
-                    
             <ScrollView style={{
             }} showsVerticalScrollIndicator={false}>
                 {
